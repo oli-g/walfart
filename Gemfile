@@ -15,9 +15,11 @@ gem 'coffee-rails', '~> 4.1.0'
 # gem 'unicorn'
 
 group :development, :test do
+  gem 'pry-rails'
   gem 'web-console', '~> 2.0'
   gem 'spring'
   gem 'rspec-rails', '~> 3.0'
+  gem 'rspec-collection_matchers'
 end
 
 group :production do
