@@ -1,0 +1,30 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Walfart</h1>
+
+<h3>New Product</h3>
+
+<%= render 'form', product: (@product || Product.new) %>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Price</th>
+      <th>Url</th>
+      <th colspan="2"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @products.each do |product| %>
+      <tr>
+        <td><%= product.name %></td>
+        <td><%= product.price %></td>
+        <td><%= product.url %></td>
+        <td><%= link_to 'Show', product %></td>
+        <td><%= link_to 'Destroy', product, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
