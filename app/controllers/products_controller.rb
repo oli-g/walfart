@@ -12,12 +12,14 @@ class ProductsController < ApplicationController
 
   # POST /products
   def create
-    @product = Product.new(product_params)
+    attributes = WalmartFetcher.fetch(product_params[:url])
+    @product = ProductImporter.import(attributes[:product]) if attributes
 
-    if @product.save
-      redirect_to @product, notice: 'Product was successfully created.'
+    if attributes && @product.valid?
+      redirect_to @product, notice: 'Product was successfully imported.'
     else
       @products = Product.all
+      flash.now[:alert] = 'Product was not imported.'
       render :index
     end
   end
@@ -31,7 +33,7 @@ class ProductsController < ApplicationController
 
   private
 
-    def product_params
-      params.require(:product).permit(:url)
-    end
+  def product_params
+    params.require(:product).permit(:url)
+  end
 end
