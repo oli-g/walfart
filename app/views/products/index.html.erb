@@ -12,6 +12,7 @@
       <th>Name</th>
       <th>Price</th>
       <th>Url</th>
+      <th>Reviews Count</th>
       <th colspan="2"></th>
     </tr>
   </thead>
@@ -22,6 +23,7 @@
         <td><%= product.name %></td>
         <td><%= product.price %></td>
         <td><%= product.url %></td>
+        <td><%= product.reviews.count %></td>
         <td><%= link_to 'Show', product %></td>
         <td><%= link_to 'Destroy', product, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
